@@ -1,0 +1,14 @@
+{
+    "indent": 4,
+    "browser": true,
+    "browserify": true,
+    "devel": true,
+    "esversion": 6,
+    "unused": true,
+    "undef": true,
+    "eqeqeq": true,
+    "browser": true,
+    "globals": {
+        "LL1Parser": true
+    }
+}
