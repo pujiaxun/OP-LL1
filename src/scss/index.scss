@@ -1,0 +1,37 @@
+.container {
+    text-align: center;
+    width: 100%;
+}
+.op-container {
+    margin: 10px;
+
+    #opInput {
+        height: 30px;
+        width: 600px;
+        font-size: 20px;
+    }
+
+    #opResult {
+        height: 50px;
+        width:600px;
+        text-align: left;
+        margin: 0 auto;
+        background-color: #aaa;
+    }
+}
+.ll1-container {
+    margin: 10px;
+
+    #ll1Input{
+        height: 30px;
+        width: 600px;
+        font-size: 20px;
+    }
+
+    #ll1Results {
+        width: 600px;
+        text-align: left;
+        margin: 0 auto;
+        background-color: #aaa;
+    }
+}

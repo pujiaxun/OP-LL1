@@ -13,7 +13,7 @@ class LL1Parser {
             [')', 'U', '$'],
             ['#', 'U', '$'],
             ['m', 'B', 'm'],
-            ['(', 'B', '(S)']
+            ['(', 'B', '(S)'],
         ];
     }
 
@@ -59,7 +59,8 @@ class LL1Parser {
         if (prod) {
             return prod[2];
         } else {
-            throw "SyntaxError: Unexpected symbol or it is not a sentence.";
+            // 其实这里可以再细分为“不能识别输入的字符”和”找不到对应产生式的语法错误“。
+            throw "SyntaxError: Unexpected character or it is not a sentence.";
         }
     }
 
