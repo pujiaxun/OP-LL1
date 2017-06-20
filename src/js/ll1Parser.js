@@ -19,7 +19,7 @@ class LL1Parser {
 
     parse(sentence) {
         if (!/#$/.test(sentence)) {
-            throw "Error: A sentence should be end with the #.";
+            throw "SyntaxError: A sentence should be end with the #.";
         }
 
         this.logs = [];
@@ -36,8 +36,8 @@ class LL1Parser {
                 try {
                     let production = this.readProduction(first, last);
                     this.log(`${last} -> ${production}`);
-
                     this.stack.pop();
+
                     if (production !== '$') {
                         production.split('').reverse().forEach((p) => {
                             this.stack.push(p);
@@ -47,9 +47,7 @@ class LL1Parser {
                     this.log(e);
                     break;
                 }
-
             }
-            console.log(this);
         }
         return this.logs;
     }
