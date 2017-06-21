@@ -61,7 +61,7 @@ class OPParser {
                     throw `SyntaxError: Unexpected token at col: ${index}`;
                 }
             } else {
-                throw `SyntaxError: Invalid token at col: ${index}`;
+                throw `TokenError: Invalid token at col: ${index}`;
             }
         }
 
@@ -101,7 +101,7 @@ class OPParser {
             case "/":
                 return a / b;
             default:
-                throw `SyntaxError: Invalid operation symbol: ${t}`;
+                throw `TokenError: Invalid operation symbol: ${t}`;
         }
     }
 }
