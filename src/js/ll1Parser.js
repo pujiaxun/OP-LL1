@@ -19,17 +19,17 @@ class LL1Parser {
 
     parse(sentence) {
         if (!/#$/.test(sentence)) {
-            throw "SyntaxError: A sentence should be end with the #.";
+            throw "SyntaxError: Expected # at the end of input";
         }
 
         this.logs = [];
         this.string = sentence.split('');
         this.stack = ['#', 'S'];
-        while (this.stack.length > 1) {
+        while (this.stack.length > 0) {
             let last = this.stack.slice(-1).pop();
             let first = this.string[0];
             if (last === first) {
-                this.log(`${first} 匹配`);
+                this.log(first === '#' ? '接受' : `${first} 匹配`);
                 this.stack.pop();
                 this.string.shift();
             } else {
@@ -60,7 +60,7 @@ class LL1Parser {
             return prod[2];
         } else {
             // 其实这里可以再细分为“不能识别输入的字符”和”找不到对应产生式的语法错误“。
-            throw "SyntaxError: Unexpected character or it is not a sentence.";
+            throw "SyntaxError: Invalid or unexpected token";
         }
     }
 

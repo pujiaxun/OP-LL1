@@ -1,37 +1,76 @@
+$pink: #ed87a9;
+
+body {
+    background-color: #eee;
+    box-sizing: border-box;
+}
+
+input {
+    border: none;
+    box-sizing: border-box;
+    padding: 0 10px;
+    height: 50px;
+    width: 600px;
+    font-size: 30px;
+    outline-style: none;
+    background-color: #f6f6f6;
+}
+
 .container {
     text-align: center;
     width: 100%;
+
+    .title {
+        font-size: 50px;
+        color: $pink;
+        font-family: fantasy;
+    }
+
+    small {
+        font-size: 16px;
+    }
 }
+
 .op-container {
     margin: 10px;
 
-    #opInput {
-        height: 30px;
-        width: 600px;
-        font-size: 20px;
-    }
-
     #opResult {
         height: 50px;
-        width:600px;
+        width: 600px;
         text-align: left;
         margin: 0 auto;
-        background-color: #aaa;
+        color: $pink;
+        line-height: 50px;
+        font-size: 20px;
     }
 }
+
 .ll1-container {
     margin: 10px;
 
-    #ll1Input{
-        height: 30px;
-        width: 600px;
-        font-size: 20px;
-    }
-
     #ll1Results {
+        color: $pink;
         width: 600px;
         text-align: left;
+        height: 400px;
+        overflow: auto;
         margin: 0 auto;
-        background-color: #aaa;
+
+        table {
+            width: 100%;
+            text-align: center;
+
+            .stack {
+                text-align: left;
+            }
+
+            .string {
+                text-align: right;
+            }
+
+            td {
+                border: 1px solid #ddd;
+            }
+        }
     }
 }

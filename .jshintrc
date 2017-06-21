@@ -9,6 +9,7 @@
     "eqeqeq": true,
     "browser": true,
     "globals": {
-        "LL1Parser": true
+        "LL1Parser": true,
+        "OPParser": true
     }
 }
