@@ -44,7 +44,7 @@ class LL1Parser {
                         });
                     }
                 } catch (e) {
-                    this.log(e);
+                    this.log(e, true);
                     break;
                 }
             }
@@ -64,11 +64,12 @@ class LL1Parser {
         }
     }
 
-    log(rule) {
+    log(rule, isError) {
         this.logs.push({
             stack: this.stack.join(''),
             string: this.string.join(''),
             rule,
+            isError,
         });
     }
 }

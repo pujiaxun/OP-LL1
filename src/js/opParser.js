@@ -28,32 +28,29 @@ class OPParser {
 
         this.optr = ['#']; // 存放运算符的 OPTR 栈
         this.opnd = []; // 存放操作数或运算结果的 OPND 栈
-        let digitRegex = /^\d$/;
+        let digitRegex = /^\d+$/;
         let opRegex = /^[\*\/\+\-\(\)#]$/;
 
-        let exp = expression.split('');
+        let tokens = this.lex(expression);
 
-        // TODO: 按词读入数字，而不是按字符
-        while (exp.length > 0) {
-            let ele = exp[0];
-            let index = expression.length - exp.length + 1;
+        while (tokens.length > 0) {
+            let ele = tokens[0];
+            let index = expression.length - tokens.join("").length + 1;
 
-            console.log("输入：", ele);
             if (digitRegex.test(ele)) {
                 let num = parseInt(ele, 10);
                 this.opnd.push(num);
-                exp.shift();
+                tokens.shift();
             } else if (opRegex.test(ele)) {
                 let compareResult = this.compareLevel(ele);
-                console.log('比较结果', compareResult);
                 if (compareResult === -1) {
                     this.optr.push(ele);
-                    exp.shift();
+                    tokens.shift();
                 } else if (compareResult === 0) {
                     if (ele !== '#') {
                         this.optr.pop();
                     }
-                    exp.shift();
+                    tokens.shift();
                 } else if (compareResult === 1) {
                     let b = this.opnd.pop();
                     let a = this.opnd.pop();
@@ -77,6 +74,11 @@ class OPParser {
         return this.opnd.pop();
     }
 
+    lex(expression) {
+        // 虽然有点作弊... 但实在不想手动遍历
+        return expression.match(/\d+|./g);
+    }
+
     compareLevel(input) {
         let theta1 = this.symbols.indexOf(this.optr.slice(-1).pop());
         let theta2 = this.symbols.indexOf(input);
@@ -85,7 +87,8 @@ class OPParser {
 
     calculate(a, t, b) {
         if (typeof a !== 'number' || typeof b !== 'number') {
-            throw `SyntaxError: Unexpected operation symbol: ${t}`;
+            console.log(a,b);
+            throw `SyntaxError: Unexpected operation symbol around: ${t}`;
         }
 
         switch (t) {

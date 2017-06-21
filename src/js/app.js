@@ -6,11 +6,14 @@
     let opResult = document.getElementById("opResult");
     opInput.addEventListener('input', (event) => {
         let val = event.target.value;
+        opResult.classList.remove("error");
+
         if (/#$/.test(val)) {
             try {
                 let result = opParser.parse(val);
                 opResult.innerHTML = '结果：' + result;
             } catch (e) {
+                opResult.classList.add("error");
                 opResult.innerHTML = e;
             }
         }
@@ -36,7 +39,7 @@
 
         let tbody = results.map((res, i) => {
             return `
-                <tr>
+                <tr class="${res.isError ? 'error' : ''}">
                     <td>${i + 1}</td>
                     <td class="stack">${res.stack}</td>
                     <td class="string">${res.string}</td>
